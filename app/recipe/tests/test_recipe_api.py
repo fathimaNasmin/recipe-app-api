@@ -89,10 +89,12 @@ class PrivateRecipeAPITests(TestCase):
         self.assertEqual(res.data, serializer.data)
         
     def test_get_recipe_detail(self):
-        """Test recipe detail with recipe id specified."""
-        recipe = create_recipe(user=self.user)  
+        """Test get recipe detail."""
+        recipe = create_recipe(user=self.user)
+
         url = detail_url(recipe.id)
-        res = self.client.get(url)    
+        res = self.client.get(url)
+
         serializer = RecipeDetailSerializer(recipe)
         self.assertEqual(res.data, serializer.data)
           
