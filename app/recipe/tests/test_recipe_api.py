@@ -9,7 +9,7 @@ from rest_framework.test import APIClient
 
 from core.models import Recipe
 
-from .serializer import RecipeSerializer 
+from recipe.serializers import RecipeSerializer
 
 
 RECIPE_URL = reverse('recipe:recipe-list')
@@ -52,7 +52,7 @@ class PrivateRecipeAPITests(TestCase):
             'test@example.com',
             'passwoerd12445'
         )
-        self.client.force_authentication(self.user)
+        self.client.force_authenticate(self.user)
         
     def test_recipe_retrieve_list(self):
         """Test retrieving a list of recipes."""
