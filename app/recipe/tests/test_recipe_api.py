@@ -87,7 +87,7 @@ class PrivateRecipeAPITests(TestCase):
         create_recipe(user=self.user)
 
         res = self.client.get(RECIPE_URL)
-        recipe = Recipe.objects.filter(user=self.user)
+        recipe = Recipe.objects.filter(user=self.user).order_by('-id')
         serializer = RecipeSerializer(recipe, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
